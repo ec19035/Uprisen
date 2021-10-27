@@ -13,15 +13,15 @@ public class ship : MonoBehaviour
         
     }
 
-    void OnMove ( InputValue value ) {
-        moveValue = value.Get<Vector2>();
-    }
-
     // Update is called once per frame
     void Update()
     {
-        Vector3 movement = new Vector3 (moveValue.x , 0.0f , moveValue.y ) ;
+        Vector3 movement = new Vector3 (moveValue.x , 0.0f , moveValue.y) ;
         GetComponent<Rigidbody>().AddForce(movement * speed * Time.deltaTime );
+    }
+
+    void OnMove ( InputValue value ) {
+        moveValue = value.Get<Vector2>();
     }
     
 }
