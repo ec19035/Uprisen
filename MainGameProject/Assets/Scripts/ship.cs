@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class ship : MonoBehaviour
 {
     public Vector2 moveValue;
-    public float speed;
+    public float speed = 500;
     // Start is called before the first frame update
     void Start()
     {

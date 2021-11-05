@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class camera : MonoBehaviour
 {
     public GameObject player;
-    public float rotateSpeed = 2.0F;
     private Vector3 offset;
-    public float horizontalSpeed = 0.0F;
-    public float verticalSpeed = 0.0F;
+    public float horizontalSpeed = 1.0F;
+    public float verticalSpeed = 1.0F;
     // Start is called before the first frame update
     void Start(){
-        offset = transform.position;
+        //offset = transform.position;
+        offset = transform.position - player.transform.position;
     }
 
     void Update() {
@@ -24,6 +23,7 @@ public class camera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate(){
         transform.position = player.transform.position + offset;
+        //transform.LookAt(player.transform);
     }
 
 }
