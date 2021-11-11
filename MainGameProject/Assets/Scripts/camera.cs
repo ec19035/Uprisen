@@ -24,9 +24,12 @@ public class camera : MonoBehaviour
 
     // Update is called once per frame
     void LateUpdate(){
-        transform.position = player.transform.position + offset;
-        rotation += Input.GetAxis("Horizontal");
+        //transform.position = player.transform.position + offset;
+        transform.position = Vector3.Lerp(transform.position, (player.transform.position + offset), 0.23f);
+        //rotation += Input.GetAxis("Horizontal");
         //transform.Rotate(0,rotation,0);
+        Quaternion toRotation = Quaternion.LookRotation(player.transform.position, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotation * Time.deltaTime); 
     }
 
 }
