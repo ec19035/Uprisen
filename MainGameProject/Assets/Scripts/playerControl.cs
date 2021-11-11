@@ -7,13 +7,15 @@ public class playerControl : MonoBehaviour
     CharacterController body;
     private Vector3 movement;
     private float speed = 7.0f;
-    private float jump = 7.0f;
+    private float jump = 30.0f;
     private float gravity = 25.0f;
+    private int health;
 
     // Start is called before the first frame update
     void Start(){
         body = GetComponent<CharacterController>();
         movement = Vector3.zero;
+        health = 100;
     }
 
     // Update is called once per frame
