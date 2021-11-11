@@ -20,6 +20,12 @@ public class patrol : MonoBehaviour
         location = 0;
     }
 
+    void OnTriggerEnter(Collider other){
+        if (other.tag == "Melee"){
+            Destroy(gameObject);
+        }
+    }
+
     // Update is called once per frame
     void Update(){
         if(Vector3.Distance(this.transform.position, player.transform.position) <= 10f){

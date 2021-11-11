@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class destroy : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void OnTriggerEnter(Collider other)
-    {
-        Destroy(other.gameObject);
-        SceneManager.LoadScene( SceneManager.GetActiveScene().buildIndex );
+public class destroy : MonoBehaviour{
+    void OnTriggerEnter(Collider other){
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        //Application.LoadLevel(0);
     }
 }

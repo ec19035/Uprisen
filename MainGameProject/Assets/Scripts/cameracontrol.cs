@@ -9,15 +9,30 @@ public class cameracontrol : MonoBehaviour
     private bool zoomed;
     private Vector3 offset;
     private Vector3 finalOffset;
+    private bool collide;
     // Start is called before the first frame update
     void Start(){
         offset = transform.position - player.transform.position;
         finalOffset = offset;
         zoomed = false;
+        collide = false;
     }
 
     void Update(){
         zoom();
+    }
+
+    void checkWall(){
+        if (collide){
+            finalOffset.z = offset.z * 1.2f;
+            collide = false;
+        } else {
+            finalOffset.z = offset.z; 
+        }
+    }
+
+    void OnCollisionEnter(Collision collision){
+        collide = true;
     }
 
     void zoom(){

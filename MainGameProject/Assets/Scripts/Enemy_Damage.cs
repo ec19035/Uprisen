@@ -16,9 +16,10 @@ public class Enemy_Damage : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
+        Debug.Log("ewf");
         if (other.tag == "Melee")
-            Destroy(other);
+            Destroy(gameObject);
     }
 }
