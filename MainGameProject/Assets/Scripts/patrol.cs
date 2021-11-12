@@ -12,6 +12,8 @@ public class patrol : MonoBehaviour
     private int location;
     [SerializeField]
     private GameObject player;
+    [SerializeField]
+    private GameObject door;
     // Start is called before the first frame update
     void Start(){
         agent = GetComponent<NavMeshAgent>();
@@ -23,6 +25,7 @@ public class patrol : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if (other.tag == "Melee"){
             Destroy(gameObject);
+            Destroy(door);
         }
     }
 
