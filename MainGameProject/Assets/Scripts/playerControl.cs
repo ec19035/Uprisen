@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class playerControl : MonoBehaviour
 {
@@ -22,6 +23,14 @@ public class playerControl : MonoBehaviour
     void Update(){
         move();
         rotate();
+    }
+
+    void OnTriggerEnter(Collider other){
+        if (other.tag == "Melee"){
+            Destroy(gameObject);
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
     }
 
     void move(){
