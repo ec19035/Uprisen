@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class playerControl : MonoBehaviour
 {
@@ -11,12 +12,15 @@ public class playerControl : MonoBehaviour
     private float jump = 30.0f;
     private float gravity = 25.0f;
     private int health;
+    public Text textbox;
 
     // Start is called before the first frame update
     void Start(){
         body = GetComponent<CharacterController>();
+        //textbox = GetComponent<Text>();
         movement = Vector3.zero;
         health = 100;
+        textbox.text = "Health:" + health;
     }
 
     // Update is called once per frame
@@ -27,9 +31,13 @@ public class playerControl : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if (other.tag == "Melee"){
-            Destroy(gameObject);
-            Scene scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.name);
+            health = health - 5;
+            textbox.text = "Health:" + health;
+            if(health <= 0){
+                Destroy(gameObject);
+                Scene scene = SceneManager.GetActiveScene();
+                SceneManager.LoadScene(scene.name);
+            }
         }
     }
 
