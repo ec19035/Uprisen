@@ -3,8 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+// Used to create an AI that moves around while the character is out
+// of range. Then chases the player once they are within range.
+// and attacks the player. 
+// Also has collision detection incase the player harms the AI
+// and destroys it accordingly
+
 public class patrol : MonoBehaviour
 {
+    // made fields private to protect them
+    // used serializable to access them 
     [SerializeField]
     private GameObject[] points;
     [SerializeField]
