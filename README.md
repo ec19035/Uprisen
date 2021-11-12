@@ -1,9 +1,9 @@
 # Uprisen
 
-# Gameplay Commands =>
-# WASD: Move Character
-# Move Mouse: Move Camera
-# Mouse-Left Click: Attack Move
+ Gameplay Commands =>
+ WASD: Move Character
+ Move Mouse: Move Camera
+ Mouse-Left Click: Attack Move
 # Mouse-Right Click: Zoom
 # Space Bar: Jump Move
 
