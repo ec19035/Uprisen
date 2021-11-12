@@ -14,48 +14,50 @@ public class patrol : MonoBehaviour
     // made fields private to protect them
     // used serializable to access them 
     [SerializeField]
-    private GameObject[] points;
+    private GameObject[] points; // used to store the two points where the AI walks between
     [SerializeField]
-    private NavMeshAgent agent;
-    private int location;
+    private NavMeshAgent agent; // Used to model AI movement
+    private int location; // stores which node the AI is at
     [SerializeField]
-    private GameObject player;
+    private GameObject player; // ges refernece of player to claculate distance from AI
     [SerializeField]
-    private GameObject door;
+    private GameObject door; // Unlocks(*Destroys) door to boss fights
+
     // Start is called before the first frame update
     void Start(){
-        agent = GetComponent<NavMeshAgent>();
-        agent.autoBraking = true;
-        agent.destination = points[location].transform.position;
+        agent = GetComponent<NavMeshAgent>(); // gets nav mesh agent
+        agent.autoBraking = true; // slows down near nodes
+        agent.destination = points[location].transform.position; // calculates next node to travel to
         location = 0;
     }
 
+    // checks if the AI has been attacked 
     void OnTriggerEnter(Collider other){
         if (other.tag == "Melee"){
-            Destroy(gameObject);
-            Destroy(door);
+            Destroy(gameObject); // destoys AI
+            Destroy(door); // unlocks(*destroys) door
         }
     }
 
     // Update is called once per frame
+    // checks what node or player the AI is closest to
+
     void Update(){
         if(Vector3.Distance(this.transform.position, player.transform.position) <= 10f){
             agent.destination = player.transform.position;
         }
         if(Vector3.Distance(this.transform.position, points[location].transform.position) <= 2f){
-                Iterate();
-        }
-        if(Vector3.Distance(this.transform.position, player.transform.position) <= 1f){
-            Debug.Log("attack");
+            Iterate();
         }
     }
 
+    // (simple) logic to decide which node to go to
     void Iterate(){
         if (location < points.Length-1){
             location += 1;
         } else {
             location = 0; 
         }
-        agent.destination = points[location].transform.position;
+        agent.destination = points[location].transform.position; //move towards node
     }
 }
