@@ -57,6 +57,8 @@ public class playerControl : MonoBehaviour
             if(Input.GetButton("Jump")){
                 movement.y = jump; 
             }
+        } else {
+            movement += new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * 0.1f;
         }
 
         movement.y -= gravity * Time.deltaTime; // constantly apply gravity to the player
@@ -65,6 +67,6 @@ public class playerControl : MonoBehaviour
 
     // used to rotate player on the x axis
     void rotate(){
-        transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 4.0f,0.0f));
+        transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 7.0f,0.0f));
     }
 }

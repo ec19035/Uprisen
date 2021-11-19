@@ -40,6 +40,10 @@ public class cameracontrol : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider other){
+        Debug.Log("Alert!");
+    }
+
     // checks movement and rotation of player and adjusts camera accordingly
     void LateUpdate(){
         rotate();
@@ -48,8 +52,21 @@ public class cameracontrol : MonoBehaviour
         transform.LookAt(player.transform.position); // makes sure camera is always looking at player
     }
 
+    void FixedUpdate(){
+        int layerMask = 1 << 8;
+
+        // This would cast rays only against colliders in layer 8.
+        // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+        layerMask = ~layerMask;
+        Vector3 fwd = transform.TransformDirection(Vector3.forward);
+
+        if (Physics.Raycast(transform.position, fwd, 10, layerMask))
+            print("There is something in front of the object!");
+    }
+
     // gets rotation for camera
     void rotate(){
-        finalOffset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 4.0f, Vector3.up) * finalOffset;
+        finalOffset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * 2.5f, Vector3.right) * finalOffset;
+        finalOffset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 7.0f, Vector3.up) * finalOffset;
     }
 }
