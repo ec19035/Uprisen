@@ -22,6 +22,7 @@ public class cameracontrol : MonoBehaviour
 
     // Update is called once per frame
     void Update(){
+        fixCamera();
         zoom();
     }
 
@@ -52,16 +53,19 @@ public class cameracontrol : MonoBehaviour
         transform.LookAt(player.transform.position); // makes sure camera is always looking at player
     }
 
-    void FixedUpdate(){
+    void fixCamera(){
         int layerMask = 1 << 8;
 
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-
-        if (Physics.Raycast(transform.position, fwd, 10, layerMask))
+        if (Physics.Raycast(transform.position, fwd, 5f, layerMask)){
+            finalOffset.z = offset.z / 2;
             print("There is something in front of the object!");
+        } else {
+            finalOffset.z = offset.z;
+        }
     }
 
     // gets rotation for camera
