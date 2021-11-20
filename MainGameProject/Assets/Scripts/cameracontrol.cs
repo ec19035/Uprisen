@@ -11,6 +11,8 @@ public class cameracontrol : MonoBehaviour
     private bool zoomed; // checks if currently zoomed in
     private Vector3 offset; // stores difference between player position and camera position
     private Vector3 finalOffset; // takes into account any zoom
+    private float zoomTimes;
+    private float rayLength;
 
     // Start is called before the first frame update
     void Start(){
@@ -18,6 +20,8 @@ public class cameracontrol : MonoBehaviour
         // Intialize
         finalOffset = offset;
         zoomed = false;
+        zoomTimes = 2.0f;
+        rayLength = 5.0f;
     }
 
     // Update is called once per frame
@@ -41,10 +45,6 @@ public class cameracontrol : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other){
-        Debug.Log("Alert!");
-    }
-
     // checks movement and rotation of player and adjusts camera accordingly
     void LateUpdate(){
         rotate();
@@ -55,16 +55,21 @@ public class cameracontrol : MonoBehaviour
 
     void fixCamera(){
         int layerMask = 1 << 8;
-
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
         layerMask = ~layerMask;
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        if (Physics.Raycast(transform.position, fwd, 5f, layerMask)){
-            finalOffset.z = offset.z / 2;
-            print("There is something in front of the object!");
+        if (Physics.Raycast(transform.position, fwd, rayLength, layerMask)){
+            if (zoomTimes < 3.8f){
+                zoomTimes += 0.1f;
+                rayLength -= 0.1f;
+            }
+            finalOffset.z = offset.z / zoomTimes;
+            print("There is something in front of the object!" + zoomTimes + " " + rayLength);
         } else {
-            finalOffset.z = offset.z;
+            finalOffset = offset;
+            zoomTimes = 2.0f;
+            rayLength = 5.0f;
         }
     }
 
