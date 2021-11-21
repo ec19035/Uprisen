@@ -8,4 +8,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Prototype/FullPlatform.unity
     guid: a754f59da39fd004aa5b857106b9e4f7
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.input.settings: {fileID: 11400000, guid: f6b2609c22ee30748bbcd28a08988733, type: 2}

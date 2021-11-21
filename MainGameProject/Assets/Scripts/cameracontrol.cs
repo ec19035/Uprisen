@@ -13,6 +13,7 @@ public class cameracontrol : MonoBehaviour
     private Vector3 finalOffset; // takes into account any zoom
     private float zoomTimes;
     private float rayLength;
+    private bool hasZoomed;
 
     // Start is called before the first frame update
     void Start(){
@@ -22,6 +23,7 @@ public class cameracontrol : MonoBehaviour
         zoomed = false;
         zoomTimes = 2.0f;
         rayLength = 5.0f;
+        hasZoomed = false;
     }
 
     // Update is called once per frame
@@ -37,10 +39,12 @@ public class cameracontrol : MonoBehaviour
                 zoomed = false;
                 finalOffset.y = offset.y; // resets camera
                 finalOffset.z = offset.z;
+                rayLength = 0.0f;
             } else {
                 zoomed = true;
                 finalOffset.y = offset.y / 2; // moves camera closer
                 finalOffset.z = offset.z / 2;
+                rayLength = 5.0f;
             }
         }
     }
@@ -54,22 +58,25 @@ public class cameracontrol : MonoBehaviour
     }
 
     void fixCamera(){
-        int layerMask = 1 << 8;
         // This would cast rays only against colliders in layer 8.
         // But instead we want to collide against everything except layer 8. The ~ operator does this, it inverts a bitmask.
+        int layerMask = 1 << 8;
         layerMask = ~layerMask;
-        Vector3 fwd = transform.TransformDirection(Vector3.forward);
-        if (Physics.Raycast(transform.position, fwd, rayLength, layerMask)){
+        Vector3 fwd = transform.TransformDirection(Vector3.forward); // raycast direction
+        if (Physics.Raycast(transform.position, fwd, rayLength, layerMask)){ // casts a ray cast between player and camera
             if (zoomTimes < 3.8f){
-                zoomTimes += 0.1f;
+                zoomTimes += 0.1f; // makes raycast smaller and zoom scale larger
                 rayLength -= 0.1f;
             }
-            finalOffset.z = offset.z / zoomTimes;
-            print("There is something in front of the object!" + zoomTimes + " " + rayLength);
+            finalOffset.z = offset.z / zoomTimes; // zooms in
+            hasZoomed = true; // sets state tohas zoomed in
         } else {
-            finalOffset = offset;
-            zoomTimes = 2.0f;
-            rayLength = 5.0f;
+            if (hasZoomed){ // resets value
+                finalOffset.z = offset.z;
+                zoomTimes = 2.0f;
+                rayLength = 5.0f;
+                hasZoomed = false;
+            }
         }
     }
 

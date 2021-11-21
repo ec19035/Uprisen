@@ -57,6 +57,9 @@ public class playerControl : MonoBehaviour
             if(Input.GetButton("Jump")){
                 movement.y = jump; 
             }
+            if(Input.GetButton("Dodge")){
+                movement.z -= 10.0f;
+            }
         } else {
             movement += new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * 0.1f;
         }
