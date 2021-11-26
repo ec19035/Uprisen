@@ -42,7 +42,7 @@ public class cameracontrol : MonoBehaviour
                 rayLength = 0.0f;
             } else {
                 zoomed = true;
-                finalOffset.y = offset.y / 2; // moves camera closer
+                finalOffset.y = offset.y / 1.1f; // moves camera closer
                 finalOffset.z = offset.z / 2;
                 rayLength = 5.0f;
             }
@@ -82,7 +82,8 @@ public class cameracontrol : MonoBehaviour
 
     // gets rotation for camera
     void rotate(){
-        finalOffset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * 2.5f, Vector3.right) * finalOffset;
+        if (finalOffset.y + Input.GetAxis("Mouse Y") * 2.5f < 3.0f && finalOffset.y + Input.GetAxis("Mouse Y") * 2.5f > 0.1f)
+            finalOffset = Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * 2.5f, Vector3.right) * finalOffset;
         finalOffset = Quaternion.AngleAxis(Input.GetAxis("Mouse X") * 7.0f, Vector3.up) * finalOffset;
     }
 }

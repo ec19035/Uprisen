@@ -12,7 +12,7 @@ public class playerControl : MonoBehaviour
     CharacterController body; // used to control player body
     private Vector3 movement; // used to store movement vectors
     private float speed = 7.0f;
-    private float jump = 10.0f;
+    private float jump = 7.0f;
     private float gravity = 25.0f;
     private int health; // used to keep track of player health 
     public Text textbox; // Used to display player health
@@ -53,15 +53,17 @@ public class playerControl : MonoBehaviour
         if(body.isGrounded){
             movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
             movement *= speed; // increase speed to make movement more realistic
-            movement = transform.rotation * movement; // multipy rotation by movement 
+            movement = transform.localRotation * movement; // multipy rotation by movement 
             if(Input.GetButton("Jump")){
-                movement.y = jump; 
+                movement.y += jump; 
             }
-            if(Input.GetButton("Dodge")){
-                movement.z -= 10.0f;
-            }
+            
         } else {
             movement += new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * 0.1f;
+        }
+
+        if(Input.GetButton("Dodge")){
+                movement.z -= 10.0f;
         }
 
         movement.y -= gravity * Time.deltaTime; // constantly apply gravity to the player
@@ -71,5 +73,6 @@ public class playerControl : MonoBehaviour
     // used to rotate player on the x axis
     void rotate(){
         transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 7.0f,0.0f));
+        Debug.Log(Input.GetAxis("Mouse X"));
     }
 }

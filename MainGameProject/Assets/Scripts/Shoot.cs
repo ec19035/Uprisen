@@ -7,10 +7,13 @@ public class Shoot : MonoBehaviour
     public GameObject bullet;
     public float shootForce;
     public Transform attackPoint;
+    public float wait;
 
     // Update is called once per frame
     void Update(){
-        if (Input.GetKey(KeyCode.Mouse0)){
+        wait -= Time.deltaTime;
+        if (Input.GetButton("Fire1") && 0 > wait){
+            wait = 2.0f;
             Ray ray = new Ray(attackPoint.position, attackPoint.forward);
             RaycastHit hit;
             Vector3 targetPoint;
@@ -25,6 +28,10 @@ public class Shoot : MonoBehaviour
             GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity);
             currentBullet.transform.forward = direction.normalized;
             currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse);
+
+            Destroy(currentBullet, 1f);
         }
+
     }
+
 }
