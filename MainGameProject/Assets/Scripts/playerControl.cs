@@ -59,17 +59,25 @@ public class playerControl : MonoBehaviour
             }
             
         } else {
-            movement += new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")) * 0.1f;
+            movement.x += Input.GetAxis("Horizontal") * 0.1f; 
+            movement.z += Input.GetAxis("Vertical") * 0.1f;
         }
 
         if(Input.GetButton("Dodge")){
+            if (transform.localRotation.y > 0.75 || transform.localRotation.y < -0.75){
+                movement.z += 10.0f;
+            } else if (transform.localRotation.y > 0.25){
+                movement.x -= 10.0f;
+            } else if (transform.localRotation.y < -0.25){
+                movement.x += 10.0f;
+            } else {
                 movement.z -= 10.0f;
+            }
         }
-
+       
         //if (Physics.Raycast(transform.position, Vector3.forward, 10.0f)){
         //    movement.x = 0;
         //} 
-
         movement.y -= gravity * Time.deltaTime; // constantly apply gravity to the player
         body.Move(movement * Time.deltaTime);
     }
