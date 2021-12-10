@@ -71,11 +71,13 @@ public class cameracontrol : MonoBehaviour
             finalOffset.z = offset.z / zoomTimes; // zooms in
             hasZoomed = true; // sets state tohas zoomed in
         } else {
-            if (hasZoomed){ // resets value
-                finalOffset.z = offset.z;
-                zoomTimes = 2.0f;
-                rayLength = 5.0f;
-                hasZoomed = false;
+            if (rayLength != 4.9f && hasZoomed){
+                if (!Physics.Raycast(transform.position, fwd, 5.0f, layerMask)) {
+                    finalOffset.z = offset.z;
+                    zoomTimes = 2.0f;
+                    rayLength = 5.0f;
+                    hasZoomed = false;
+                }
             }
         }
     }

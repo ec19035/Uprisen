@@ -66,6 +66,10 @@ public class playerControl : MonoBehaviour
                 movement.z -= 10.0f;
         }
 
+        //if (Physics.Raycast(transform.position, Vector3.forward, 10.0f)){
+        //    movement.x = 0;
+        //} 
+
         movement.y -= gravity * Time.deltaTime; // constantly apply gravity to the player
         body.Move(movement * Time.deltaTime);
     }
@@ -73,6 +77,5 @@ public class playerControl : MonoBehaviour
     // used to rotate player on the x axis
     void rotate(){
         transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 7.0f,0.0f));
-        Debug.Log(Input.GetAxis("Mouse X"));
     }
 }
