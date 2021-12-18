@@ -84,6 +84,6 @@ public class playerControl : MonoBehaviour
 
     // used to rotate player on the x axis
     void rotate(){
-        transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 7.0f,0.0f));
+        transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 6.0f,0.0f));
     }
 }
