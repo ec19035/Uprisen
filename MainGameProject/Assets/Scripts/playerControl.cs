@@ -12,16 +12,17 @@ public class playerControl : MonoBehaviour
     CharacterController body; // used to control player body
     private Vector3 movement; // used to store movement vectors
     private float speed = 7.0f;
-    private float jump = 7.0f;
+    private float jump = 20.0f;
     private float gravity = 25.0f;
-    private int health; // used to keep track of player health 
+    public float health; // used to keep track of player health 
     public Text textbox; // Used to display player health
+    public Image HealthBar;
 
     // Start is called before the first frame update
     void Start(){
         body = GetComponent<CharacterController>(); // used to get character controller applied to player
         movement = Vector3.zero; // intialize movement to zero
-        health = 100;
+        health = 100.0f;
         textbox.text = "Health:" + health;
     }
 
@@ -37,9 +38,10 @@ public class playerControl : MonoBehaviour
     // if health is zero scene is reset
     void OnTriggerEnter(Collider other){
         if (other.tag == "Melee"){
-            health = health - 5;
+            health = health - 5.0f;
             textbox.text = "Health:" + health;
-            if(health <= 0){
+            HealthBar.fillAmount = health/100.0f;
+            if(health <= 0.0f){
                 Destroy(gameObject);
                 Scene scene = SceneManager.GetActiveScene();
                 SceneManager.LoadScene(scene.name);
