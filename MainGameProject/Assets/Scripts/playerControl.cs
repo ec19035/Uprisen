@@ -57,10 +57,14 @@ public class playerControl : MonoBehaviour
             if(Input.GetButton("Jump")){
                 movement.y += jump; 
             }
-            
         } else {
-            movement.x += Input.GetAxis("Horizontal") * 0.1f; 
-            movement.z += Input.GetAxis("Vertical") * 0.1f;
+            if (transform.localRotation.y > 0.5 || transform.localRotation.y < -0.5){
+                movement.x -= Input.GetAxis("Horizontal") * 0.1f; 
+                movement.z -= Input.GetAxis("Vertical") * 0.1f;
+            } else {
+                movement.x += Input.GetAxis("Horizontal") * 0.1f; 
+                movement.z += Input.GetAxis("Vertical") * 0.1f;
+            }
         }
 
         if(Input.GetButton("Dodge")){
@@ -75,15 +79,12 @@ public class playerControl : MonoBehaviour
             }
         }
        
-        //if (Physics.Raycast(transform.position, Vector3.forward, 10.0f)){
-        //    movement.x = 0;
-        //} 
         movement.y -= gravity * Time.deltaTime; // constantly apply gravity to the player
         body.Move(movement * Time.deltaTime);
     }
 
     // used to rotate player on the x axis
     void rotate(){
-        transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 6.0f,0.0f));
+        transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X") * 6.3f,0.0f));
     }
 }
