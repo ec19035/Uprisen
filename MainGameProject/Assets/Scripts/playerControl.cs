@@ -12,7 +12,7 @@ public class playerControl : MonoBehaviour
     CharacterController body; // used to control player body
     private Vector3 movement; // used to store movement vectors
     private float speed = 7.0f;
-    private float jump = 20.0f;
+    private float jump = 7.0f;
     private float gravity = 25.0f;
     public float health; // used to keep track of player health 
     public Text textbox; // Used to display player health
