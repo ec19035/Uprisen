@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update(){
         wait -= Time.deltaTime;
-        if (Input.GetButton("Fire1") && 0 > wait){
+        if (Input.GetButton("Fire1") && 0 > wait && PauseMenu.gamePaused == false){
             wait = 2.0f; // delay between shots
 
             Ray ray = new Ray(attackPoint.position, attackPoint.forward); // create scope
