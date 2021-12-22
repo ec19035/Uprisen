@@ -13,10 +13,18 @@ public class AI : MonoBehaviour
     private float health;
     [SerializeField]
     private Slider displayHealth;
+    [SerializeField]
+    private Transform attackPoint;
+    [SerializeField]
+    private Animator animation;
+    private float shootForce = 100.0f;
+    private float wait;
+    public GameObject bullet;
     
     // Start is called before the first frame update
     void Start(){
         agent = GetComponent<NavMeshAgent>(); // gets nav mesh agent
+        animation = GetComponent<Animator>();
         agent.autoBraking = true; // slows down near nodes   
         health = 100.0f;
         displayHealth.value = 1.0f;
@@ -34,10 +42,42 @@ public class AI : MonoBehaviour
     // Update is called once per frame
     void Update(){
         displayHealth.value = health/100.0f;
-        if(Vector3.Distance(this.transform.position, player.transform.position) <= 10f){
+        transform.LookAt(player.transform.position);
+        if(Vector3.Distance(this.transform.position, player.transform.position) <= 1f){
+            Retreat();
+        } else if (Vector3.Distance(this.transform.position, player.transform.position) <= 10f){
             agent.destination = player.transform.position + new Vector3(2,2,2);
-            transform.LookAt(player.transform.position);
-        }
+            Melee();
+        } else if (Vector3.Distance(this.transform.position, player.transform.position) <= 20f){
+            agent.destination = player.transform.position + new Vector3(2,2,2);
+        } else if (Vector3.Distance(this.transform.position, player.transform.position) > 20f){
+            Shoot();
+        } 
         
+    }
+
+    void Retreat(){
+        Debug.Log("Retreat");
+        
+    }
+
+    void Melee(){
+        Debug.Log("Melee");
+        animation.SetBool("attacking", true);
+    }
+
+    void Shoot(){
+        wait -= Time.deltaTime;
+        animation.SetBool("attacking", false);
+        if (wait < 0){
+            wait = 2.0f;
+            Debug.Log("Shoot");
+            GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); // creates new bullets
+            Vector3 direction = player.transform.position - attackPoint.position;
+            currentBullet.transform.forward = direction.normalized; 
+            currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse); // FIRE!
+
+            Destroy(currentBullet, 1f); // removed from scene after !f
+        }
     }
 }
