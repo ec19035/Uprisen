@@ -11,42 +11,57 @@ public class AI : MonoBehaviour{
     private NavMeshAgent agent; // Used to model AI movement
     [SerializeField]
     private GameObject player; // gets refernece of player to calculate distance from AI
-    //private bool inCombat;
     [SerializeField]
     private Transform attackPoint;
+    [SerializeField]
+    private Animator animation;
     private float shootForce = 100.0f;
     private float wait;
+    private float meleeWait;
     public GameObject bullet;
+    private float health = 100.0f;
     
     // Start is called before the first frame update
     void Start(){
         agent = GetComponent<NavMeshAgent>(); // gets nav mesh agent
+        animation = GetComponent<Animator>();
+        meleeWait = 3.0f;
     }
 
     // Update is called once per frame
     void Update(){
         float distance = Vector3.Distance(this.transform.position, player.transform.position);
         Move();
-        if (distance > 20){
-            //Shoot();
+        transform.LookAt(player.transform.position);
+        if (distance <= 10){
+            meleeWait -= Time.deltaTime;
+            if (meleeWait < 0){
+                Melee();
+                meleeWait = 3.0f;
+            }
+        } else if (distance <= 20){
+            Choose();
+        } else if (distance > 20){
+            Shoot();
         }
     }
 
     void OnTriggerEnter(Collider other){
-        
-       // force is how forcefully we will push the player away from the enemy.
-        float force = 20;
-    
-        // If the object we hit is the enemy
         if (other.tag == "Melee"){
-            // Calculate Angle Between the collision point and the player
-            Vector3 dir = other.gameObject.transform.position - this.transform.position;
-            // We then get the opposite (-Vector3) and normalize it
-            dir = -dir.normalized;
-            // And finally we add force in the direction of dir and multiply it by force. 
-            // This will push back the player
-            GetComponent<Rigidbody>().AddForce(dir*force, ForceMode.Impulse);
+            health = health - 5.0f;
+            if(health <= 0.0f){
+                Destroy(this.gameObject);
+            }
         }
+    }
+
+    void Melee(){
+        Debug.Log("Melee");
+        animation.SetBool("attacking", true);
+    }
+
+    void Choose(){
+        Debug.Log("Choose");
     }
 
     void Move(){
