@@ -62,10 +62,10 @@ public class playerControl : MonoBehaviour
         } else {
             if (transform.localRotation.y > 0.5 || transform.localRotation.y < -0.5){
                 movement.x -= Input.GetAxis("Horizontal") * 0.1f; 
-                movement.z -= Input.GetAxis("Vertical") * 0.1f;
+                //movement.z -= Input.GetAxis("Vertical") * 0.1f;
             } else {
                 movement.x += Input.GetAxis("Horizontal") * 0.1f; 
-                movement.z += Input.GetAxis("Vertical") * 0.1f;
+                //movement.z += Input.GetAxis("Vertical") * 0.1f;
             }
         }
 

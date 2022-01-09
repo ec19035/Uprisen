@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 // Used to shoot magic
 public class Shoot : MonoBehaviour
 {
@@ -8,6 +10,10 @@ public class Shoot : MonoBehaviour
     public float shootForce;
     public Transform attackPoint;
     public float wait;
+    public Image image;
+    public Sprite[] elements;
+    public int pos = 0;
+
 
     // Update is called once per frame
     void Update(){
@@ -31,6 +37,14 @@ public class Shoot : MonoBehaviour
             currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse); // FIRE!
 
             Destroy(currentBullet, 1f); // removed from scene after !f
+        }
+
+        if (Input.GetKeyDown(KeyCode.E)){
+            pos += 1;
+            if (pos == 3){
+                pos = 0;
+            }
+            image.sprite = elements[pos];
         }
 
     }

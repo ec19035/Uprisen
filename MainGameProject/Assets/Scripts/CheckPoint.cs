@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    private int position;
-    [SerializeField]
-    private GameObject[] points;
     CharacterController body;
     private Vector3 lastCheckPoint;
+
     // Start is called before the first frame update
     void Start(){
         body = GetComponent<CharacterController>();
-        position = 0;
+        lastCheckPoint = body.transform.position;
     }
 
     void OnTriggerEnter(Collider other){
