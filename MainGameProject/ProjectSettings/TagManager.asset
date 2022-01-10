@@ -8,6 +8,9 @@ TagManager:
   - CheckPoint
   - Boundary
   - item
+  - HealthPotion
+  - StrengthPotion
+  - ManaPotion
   layers:
   - Default
   - TransparentFX

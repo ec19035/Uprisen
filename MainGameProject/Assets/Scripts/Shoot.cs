@@ -13,12 +13,19 @@ public class Shoot : MonoBehaviour
     public Image image;
     public Sprite[] elements;
     public int pos = 0;
+    public float mana; // used to keep track of player health 
+    public Image ManaBar;
+
+    void Start(){
+        mana = PlayerStats.instance.playerMana;
+        ManaBar.fillAmount = mana/100.0f;
+    }
 
 
     // Update is called once per frame
     void Update(){
         wait -= Time.deltaTime;
-        if (Input.GetButton("Fire1") && 0 > wait && PauseMenu.gamePaused == false){
+        if (Input.GetButton("Fire1") && 0 > wait && PauseMenu.gamePaused == false && mana >= 10.0f){
             wait = 2.0f; // delay between shots
 
             Ray ray = new Ray(attackPoint.position, attackPoint.forward); // create scope
@@ -36,7 +43,9 @@ public class Shoot : MonoBehaviour
             currentBullet.transform.forward = direction.normalized; 
             currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse); // FIRE!
 
-            Destroy(currentBullet, 1f); // removed from scene after !f
+            mana = PlayerStats.instance.DecreasePlayerMana(10.0f);
+            ManaBar.fillAmount = mana/100.0f;
+            Destroy(currentBullet, 0.5f); // removed from scene after !f
         }
 
         if (Input.GetKeyDown(KeyCode.E)){
@@ -46,7 +55,14 @@ public class Shoot : MonoBehaviour
             }
             image.sprite = elements[pos];
         }
+    }
 
+    void LateUpdate(){
+        if (Input.GetKeyDown("3")){
+            mana = PlayerStats.instance.playerMana;
+            ManaBar.fillAmount = mana/100.0f;
+            Debug.Log(mana);
+        }
     }
 
 }

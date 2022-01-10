@@ -15,15 +15,14 @@ public class playerControl : MonoBehaviour
     private float jump = 7.0f;
     private float gravity = 25.0f;
     public float health; // used to keep track of player health 
-    public Text textbox; // Used to display player health
     public Image HealthBar;
 
     // Start is called before the first frame update
     void Start(){
         body = GetComponent<CharacterController>(); // used to get character controller applied to player
         movement = Vector3.zero; // intialize movement to zero
-        health = 100.0f;
-        textbox.text = "Health:" + health;
+        health = PlayerStats.instance.playerHealth;
+        HealthBar.fillAmount = health/100.0f;
     }
 
     // Update is called once per frame
@@ -31,6 +30,10 @@ public class playerControl : MonoBehaviour
     void Update(){
         move();
         rotate();
+        if (Input.GetKeyDown("1")){
+            health = PlayerStats.instance.playerHealth;
+            HealthBar.fillAmount = health/100.0f;
+        }
     }
 
     // checks if the player collides with an object ment for combat "Melee"
@@ -38,8 +41,7 @@ public class playerControl : MonoBehaviour
     // if health is zero scene is reset
     void OnTriggerEnter(Collider other){
         if (other.tag == "Melee"){
-            health = health - 5.0f;
-            textbox.text = "Health:" + health;
+            health = PlayerStats.instance.DecreasePlayerHealth(5.0f);
             HealthBar.fillAmount = health/100.0f;
             if(health <= 0.0f){
                 Destroy(gameObject);
