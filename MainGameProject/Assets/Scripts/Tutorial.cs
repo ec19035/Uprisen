@@ -12,6 +12,7 @@ public class Tutorial : MonoBehaviour
     private bool secondCorridor = false;
     private bool jumpInstruction = false;
     private bool fightInstruction = false;
+    private bool meleeInstruction = false;
 
     // Start is called before the first frame update
     void Start(){
@@ -22,13 +23,16 @@ public class Tutorial : MonoBehaviour
         if (other.name == "FirstCheckPoint"){
             firstCorridor = true; 
         }
-        if (other.name == "SecondCheckPoint"){
+        else if (other.name == "SecondCheckPoint"){
             jumpInstruction = true;
         }
-        if (other.name == "ThirdCheckPoint"){
+        else if (other.name == "ThirdCheckPoint"){
             fightInstruction = true;
         }
-        if (other.tag == "HealthPotion"){
+        else if (other.name == "FourthCheckPoint"){
+            meleeInstruction = true;
+        }
+        else if (other.tag == "HealthPotion"){
             itemCollect = true;
         }
     }
@@ -40,25 +44,31 @@ public class Tutorial : MonoBehaviour
             instruction.text = "Proceed outside the corridor to begin.";
             start = false;
         }
-        if (firstCorridor){
-            instruction.text = "Pass over that potion there to collect.";
+        else if (firstCorridor){
+            instruction.text = "Pass over that potion there to collect. \n It will appear in your inventory.";
             firstCorridor = false;
         }
-        if (itemCollect){
-            instruction.text = "You have just picked up a potion that increases health. To use it press 1";
+        else if (itemCollect){
+            instruction.text = "You have just picked up a potion that increases health. To use it press 1.";
             itemCollect = false;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha1) && secondCorridor == false){
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && secondCorridor == false){
             instruction.text = "Great now head to the next stage.";
             secondCorridor = true;
         }
-        if (jumpInstruction){
+        else if (jumpInstruction){
             instruction.text = "Press the Space Bar to jump over obstacles and holes. \n Don't worry if you fall, you will automatically respawn at your last checkpoint.";
             jumpInstruction = false;
         } 
-        if (fightInstruction){
-            instruction.text = "Click to perform a melee attack and press J to shoot.";
+        else if (fightInstruction){
+            instruction.text = "Press J to shoot. Aim at that target. \n If you run out of mana collect some potions and to drink it press 3. ";
             fightInstruction = false;
+        }
+        else if (meleeInstruction){
+            instruction.text = "To perform a melee attack click with your mouse. \n";
+            meleeInstruction = false;
+        } else if (Input.GetMouseButtonDown(0)){
+            instruction.text = "Well done to exit this tutorial press p to pause. \n Then click quit to return to the main menu.";
         }
     }
 }

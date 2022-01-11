@@ -25,7 +25,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update(){
         wait -= Time.deltaTime;
-        if (Input.GetButton("Fire1") && 0 > wait && PauseMenu.gamePaused == false && mana >= 10.0f){
+        if (Input.GetKeyDown(KeyCode.J) && 0 > wait && PauseMenu.gamePaused == false && mana >= 10.0f){
             wait = 2.0f; // delay between shots
 
             Ray ray = new Ray(attackPoint.position, attackPoint.forward); // create scope
@@ -61,7 +61,6 @@ public class Shoot : MonoBehaviour
         if (Input.GetKeyDown("3")){
             mana = PlayerStats.instance.playerMana;
             ManaBar.fillAmount = mana/100.0f;
-            Debug.Log(mana);
         }
     }
 
