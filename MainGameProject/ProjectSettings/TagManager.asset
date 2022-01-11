@@ -11,6 +11,7 @@ TagManager:
   - HealthPotion
   - StrengthPotion
   - ManaPotion
+  - Gate
   layers:
   - Default
   - TransparentFX

@@ -19,7 +19,6 @@ public class Tutorial : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        Debug.Log(other.name);
         if (other.name == "FirstCheckPoint"){
             firstCorridor = true; 
         }
@@ -29,7 +28,7 @@ public class Tutorial : MonoBehaviour
         if (other.name == "ThirdCheckPoint"){
             fightInstruction = true;
         }
-        if (other.tag == "item"){
+        if (other.tag == "HealthPotion"){
             itemCollect = true;
         }
     }
@@ -42,7 +41,7 @@ public class Tutorial : MonoBehaviour
             start = false;
         }
         if (firstCorridor){
-            instruction.text = "Pass over that apple there to collect.";
+            instruction.text = "Pass over that potion there to collect.";
             firstCorridor = false;
         }
         if (itemCollect){
