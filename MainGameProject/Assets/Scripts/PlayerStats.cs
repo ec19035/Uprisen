@@ -1,6 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
+[Serializable]
+class PlayerData
+{
+    public string lvlChoice;
+}
+
 
 public class PlayerStats : MonoBehaviour
 {
@@ -12,13 +22,26 @@ public class PlayerStats : MonoBehaviour
     public int strengthPotions = 0;
     public int manaPotions = 0;
 
+    public string choice;
+
     void Awake(){
         if (instance != null){
-            Debug.Log("zFix Singleton");
+            Destroy(gameObject);
         }
         instance = this;
+        Load();
+        if (choice == "" || choice == null){
+            choice = Difficulty.difficulty;
+        }   
+        Debug.Log(choice);
     }
 
+    void OnApplicationQuit()
+    {
+        Save();
+    }
+
+    #region Getters and Setters
     public float IncreasePlayerHealth(float amount){
         playerHealth += amount;
         return playerHealth;
@@ -67,6 +90,35 @@ public class PlayerStats : MonoBehaviour
     public int IncreaseMPotion(){
         manaPotions += 1;
         return manaPotions;
+    }
+
+    #endregion
+
+    public void Save()
+    {
+        string filename = Application.persistentDataPath + "/playInfo.dat";
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Open(filename ,FileMode.OpenOrCreate);
+
+        PlayerData pd = new PlayerData();
+        pd.lvlChoice = choice;
+        
+        bf.Serialize(file , pd);
+        file.Close();
+    }
+
+    public void Load()
+    {
+        string filename = Application.persistentDataPath + "/playInfo.dat" ;
+        if (File.Exists(filename))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(filename ,FileMode.Open);
+            PlayerData pd = (PlayerData) bf.Deserialize(file);
+            file.Close();
+            
+            choice = pd.lvlChoice;
+        }
     }
    
 }

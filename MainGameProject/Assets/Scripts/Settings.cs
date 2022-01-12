@@ -7,10 +7,21 @@ using UnityEngine.UI;
 public class Settings : MonoBehaviour{
 
     public AudioMixer audioMixer;
+    public AudioMixer sfxaudioMixer;
     public Dropdown resolutionDropdown;
     Resolution[] resolutions;
 
+    public Slider musicSlider;
+    public Slider sfxSlider;
+
+    void Awake(){
+        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
+    }
+
     void Start(){
+        audioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("musicVolume"));
+        sfxaudioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
@@ -29,10 +40,12 @@ public class Settings : MonoBehaviour{
 
     public void setVolume(float volume){
         audioMixer.SetFloat("musicVolume", volume);
+        PlayerPrefs.SetFloat("musicVolume", volume);
     }
 
     public void setSFXVolume(float volume){
-        audioMixer.SetFloat("SFXVolume", volume);
+        sfxaudioMixer.SetFloat("SFXVolume", volume);
+        PlayerPrefs.SetFloat("SFXVolume", volume);
     }
 
     public void setQuality(int qualityIndex){
