@@ -15,17 +15,22 @@ public class AI : MonoBehaviour{
     private Transform attackPoint;
     [SerializeField]
     private Animator animation;
+    public GameObject bullet;
+
     private float shootForce = 100.0f;
     private float wait;
     private float meleeWait;
-    public GameObject bullet;
-    private float health = 100.0f;
+
+    private float health;
+    private float strength;
     
     // Start is called before the first frame update
     void Start(){
         agent = GetComponent<NavMeshAgent>(); // gets nav mesh agent
         animation = GetComponent<Animator>();
         meleeWait = 3.0f;
+        //health = EnemyStats.instance.GetHealth(this.gameObject);
+        //strength = EnemyStats.instance.GetStrength(this.gameObject);
     }
 
     // Update is called once per frame

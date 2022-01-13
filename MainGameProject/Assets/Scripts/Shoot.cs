@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Shoot : MonoBehaviour
 {
     public GameObject bullet;
-    public float shootForce;
+    public float shootForce = 5.0f;
     public Transform attackPoint;
     public float wait;
     public Image image;

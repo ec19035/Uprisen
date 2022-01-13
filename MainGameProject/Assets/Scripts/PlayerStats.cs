@@ -5,10 +5,19 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-[Serializable]
+[System.Serializable]
 class PlayerData
-{
+{  
     public string lvlChoice;
+
+    public float health;
+    public float mana;
+    public int hPotions;
+    public int sPotions;
+    public int mPotions;
+
+    public int bosses;
+    
 }
 
 
@@ -22,6 +31,8 @@ public class PlayerStats : MonoBehaviour
     public int strengthPotions = 0;
     public int manaPotions = 0;
 
+    public int initBosses;
+
     public string choice;
 
     void Awake(){
@@ -29,11 +40,15 @@ public class PlayerStats : MonoBehaviour
             Destroy(gameObject);
         }
         instance = this;
-        Load();
-        if (choice == "" || choice == null){
-            choice = Difficulty.difficulty;
-        }   
-        Debug.Log(choice);
+        //choice = Difficulty.difficulty;
+        choice = "Easy";
+        if (choice == "LoadGame"){
+            Load();
+        } 
+    }
+
+    void Start(){
+        EnemyStats.instance.SetBosses(initBosses);
     }
 
     void OnApplicationQuit()
@@ -102,8 +117,15 @@ public class PlayerStats : MonoBehaviour
 
         PlayerData pd = new PlayerData();
         pd.lvlChoice = choice;
+        pd.health = playerHealth;
+        pd.mana = playerMana;
+        pd.hPotions = healthPotions;
+        pd.sPotions = strengthPotions;
+        pd.mPotions = manaPotions;
+        pd.bosses = EnemyStats.instance.bosses;
         
-        bf.Serialize(file , pd);
+        
+        bf.Serialize(file ,pd);
         file.Close();
     }
 
@@ -118,6 +140,12 @@ public class PlayerStats : MonoBehaviour
             file.Close();
             
             choice = pd.lvlChoice;
+            playerHealth = pd.health;
+            playerMana = pd.mana;
+            healthPotions = pd.hPotions;
+            strengthPotions = pd.sPotions;
+            manaPotions = pd.mPotions;
+            initBosses = pd.bosses;
         }
     }
    

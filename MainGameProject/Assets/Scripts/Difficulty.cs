@@ -12,7 +12,7 @@ public class Difficulty : MonoBehaviour
     }
 
     public void Easy(){
-        difficulty = "easy";
+        difficulty = "Easy";
         SceneManager.LoadScene("FinalPlatform");
     }
 
@@ -24,5 +24,14 @@ public class Difficulty : MonoBehaviour
     public void Hard(){
         difficulty = "Hard";
         SceneManager.LoadScene("FinalPlatform");
+    }
+
+    public void LoadGame(){
+        difficulty = "LoadGame";
+        SceneManager.LoadScene("FinalPlatform");
+    }
+
+    public static void CutToCredits(){
+        SceneManager.LoadScene("Credits");
     }
 }

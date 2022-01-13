@@ -7,11 +7,13 @@ TagManager:
   - Melee
   - CheckPoint
   - Boundary
-  - item
   - HealthPotion
   - StrengthPotion
   - ManaPotion
   - Gate
+  - Boss
+  - Turret
+  - Eye
   layers:
   - Default
   - TransparentFX
