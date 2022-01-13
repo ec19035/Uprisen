@@ -49,7 +49,14 @@ public class Shoot : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.E)){
-            pos += 1;
+            int limit = EnemyStats.instance.bosses;
+            if (pos + 1 > limit){
+                pos = 0;
+            } else if (pos + 1 == limit){
+                pos += 1;
+            } else {
+                pos += 1;
+            }
             if (pos == 3){
                 pos = 0;
             }

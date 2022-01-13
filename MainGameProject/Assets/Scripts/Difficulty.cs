@@ -31,6 +31,10 @@ public class Difficulty : MonoBehaviour
         SceneManager.LoadScene("FinalPlatform");
     }
 
+    public void BackToMainMenu(){
+        SceneManager.LoadScene("Menu");
+    }
+
     public static void CutToCredits(){
         SceneManager.LoadScene("Credits");
     }

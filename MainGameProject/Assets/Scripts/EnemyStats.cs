@@ -7,6 +7,7 @@ public class EnemyStats : MonoBehaviour
     public static EnemyStats instance;
 
     public int bosses;
+    public GameObject[] Gates;
 
     public string playMode;
 
@@ -56,7 +57,11 @@ public class EnemyStats : MonoBehaviour
     }
 
     public int increaseBosses(){
-        return bosses+=1;
+        bosses += 1;
+        for (int i = 0; i < bosses; i++){
+            Gates[i].gameObject.transform.position += new Vector3(0,5.0f,0);
+        }
+        return bosses;
     }
 
     public void SetBosses(int num){
