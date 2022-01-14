@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Applies To: Player
+// Purpose: Used to change text through the tutorial to help the player
+
 public class Tutorial : MonoBehaviour
 {
     public TextMeshProUGUI instruction;

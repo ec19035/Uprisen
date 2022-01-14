@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Applied To: Canvas
+// Purpose: Display pause menu 
+
 public class PauseMenu : MonoBehaviour
 {
     public static bool gamePaused = false;

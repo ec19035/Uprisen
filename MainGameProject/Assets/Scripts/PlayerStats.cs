@@ -5,6 +5,11 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
+// Applied To: Game manager
+// Purpose: Keep track of all player variables, Save the current situation, 
+// and load saved game
+
+// Serializeable class 
 [System.Serializable]
 class PlayerData
 {  
@@ -12,6 +17,7 @@ class PlayerData
 
     public float health;
     public float mana;
+    public float strength;
     public int hPotions;
     public int sPotions;
     public int mPotions;
@@ -27,6 +33,7 @@ public class PlayerStats : MonoBehaviour
 
     public float playerHealth = 50.0f;
     public float playerMana = 10.0f;
+    public float playerStrength = 10.0f;
     public int healthPotions = 0;
     public int strengthPotions = 0;
     public int manaPotions = 0;
@@ -41,19 +48,23 @@ public class PlayerStats : MonoBehaviour
         }
         instance = this;
         //choice = Difficulty.difficulty;
-        choice = "Easy";
+        choice = "Tutorial";
         if (choice == "LoadGame"){
             Load();
         } 
     }
 
     void Start(){
-        EnemyStats.instance.SetBosses(initBosses);
+        if (choice != "Tutorial"){
+            EnemyStats.instance.SetBosses(initBosses);
+        }
     }
 
     void OnApplicationQuit()
     {
-        Save();
+        if (choice != "Tutorial"){
+            Save();
+        }
     }
 
     #region Getters and Setters
@@ -65,6 +76,11 @@ public class PlayerStats : MonoBehaviour
     public float DecreasePlayerHealth(float amount){
         playerHealth -= amount;
         return playerHealth;
+    }
+
+    public float IncreasePlayerStrength(float amount){
+        playerStrength += amount;
+        return playerStrength;
     }
 
     public float IncreasePlayerMana(float amount){
@@ -118,6 +134,7 @@ public class PlayerStats : MonoBehaviour
         PlayerData pd = new PlayerData();
         pd.lvlChoice = choice;
         pd.health = playerHealth;
+        pd.strength = playerStrength;
         pd.mana = playerMana;
         pd.hPotions = healthPotions;
         pd.sPotions = strengthPotions;
@@ -142,6 +159,7 @@ public class PlayerStats : MonoBehaviour
             choice = pd.lvlChoice;
             playerHealth = pd.health;
             playerMana = pd.mana;
+            playerStrength = pd.strength;
             healthPotions = pd.hPotions;
             strengthPotions = pd.sPotions;
             manaPotions = pd.mPotions;

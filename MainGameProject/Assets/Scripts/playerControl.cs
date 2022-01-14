@@ -30,17 +30,16 @@ public class playerControl : MonoBehaviour
     void Update(){
         move();
         rotate();
-        if (Input.GetKeyDown("1")){
             health = PlayerStats.instance.playerHealth;
             HealthBar.fillAmount = health/100.0f;
-        }
+        
     }
 
     // checks if the player collides with an object ment for combat "Melee"
     // if the player is attacked by the enemy weapon
     // if health is zero scene is reset
-    void OnTriggerEnter(Collider other){
-        if (other.tag == "Melee"){
+    void OnCollisionEnter(Collision other){
+        if (other.gameObject.tag == "Melee"){
             health = PlayerStats.instance.DecreasePlayerHealth(5.0f);
             HealthBar.fillAmount = health/100.0f;
             if(health <= 0.0f){

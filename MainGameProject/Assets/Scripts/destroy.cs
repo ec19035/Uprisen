@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-// Used to reset scene when player falls out of map
-// onto boundary.
+// Applied To: Boundary(Cube)
+// Purpose: Destroy any game objects that are not the 
+// player that have fallen of the map.
 
-public class destroy : MonoBehaviour{
+public class Destroy : MonoBehaviour{
 
-    // checks collision
-    // general so will work on any scene and reset it if a player interacts with it
-    void OnTriggerEnter(Collider other){
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Scene scene = SceneManager.GetActiveScene(); 
-        SceneManager.LoadScene(scene.name);
-        //Application.LoadLevel(0);
+    // checks collision then destroys if not player
+    void OnCollisionEnter(Collision other){
+        if (other.gameObject.tag != "Player"){
+            Destroy(other.gameObject);
+        }
     }
 
 }

@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Applied To: Game Manager
+// Purpose: Keep track of enemy stats, calculates enemy parameters for difficulty
+
 public class EnemyStats : MonoBehaviour
 {
+    // variables to keep track of game state
     public static EnemyStats instance;
-
     public int bosses;
     public GameObject[] Gates;
-
     public string playMode;
 
+    // makes EnemyStats instance, called in awake as it is called in other start methods
     void Awake(){
         if (instance != null){
             Destroy(gameObject);
@@ -24,6 +27,7 @@ public class EnemyStats : MonoBehaviour
         playMode = PlayerStats.instance.choice;
     }
 
+    // calculates health based on game mode
     public float GetHealth(GameObject enemy){
         float difficultyBoost = 0.0f;
         if (playMode == "Medium"){
@@ -32,7 +36,7 @@ public class EnemyStats : MonoBehaviour
             difficultyBoost = 100.0f;
         }
 
-        if (enemy.tag == "Enemy"){
+        if (enemy.tag == "Turret" || enemy.tag == "Eye"){
             return 50.0f + difficultyBoost;
         } else if (enemy.tag == "Boss"){
             return 100.0f + difficultyBoost;
@@ -40,6 +44,7 @@ public class EnemyStats : MonoBehaviour
         return 10.0f;
     }
 
+    // calculates enemy strength based on game mode
     public float GetStrength(GameObject enemy){
         float difficultyBoost = 0.0f;
         if (playMode == "Medium"){
@@ -48,7 +53,7 @@ public class EnemyStats : MonoBehaviour
             difficultyBoost = 5.0f;
         }
 
-        if (enemy.tag == "Enemy"){
+        if (enemy.tag == "Turret" || enemy.tag == "Eye"){
             return 5.0f + difficultyBoost;
         } else if (enemy.tag == "Boss"){
             return 10.0f + difficultyBoost;
@@ -56,6 +61,8 @@ public class EnemyStats : MonoBehaviour
         return 10.0f;
     }
 
+    // counts how many bosses have been destroyed
+    // unlocks gates to other areas accordingly
     public int increaseBosses(){
         bosses += 1;
         for (int i = 0; i < bosses; i++){
@@ -64,6 +71,7 @@ public class EnemyStats : MonoBehaviour
         return bosses;
     }
 
+    // used for loading saved data 
     public void SetBosses(int num){
         bosses = num;
     }

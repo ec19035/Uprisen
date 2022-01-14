@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Applied To: Player
+// Purpose: Allow the player to shoot magic,
+// keeps track of which type of magic the player wants to use
+
 // Used to shoot magic
 public class Shoot : MonoBehaviour
 {

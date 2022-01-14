@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
+// Applied To: 
+// Purpose: Allow the user to save there game preferences uses Player Prefs
+
 public class Settings : MonoBehaviour{
 
     public AudioMixer audioMixer;
@@ -14,11 +17,13 @@ public class Settings : MonoBehaviour{
     public Slider musicSlider;
     public Slider sfxSlider;
 
+    // Gets the saved values
     void Awake(){
         musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
     }
 
+    // Calculates screen resolutions available 
     void Start(){
         audioMixer.SetFloat("musicVolume", PlayerPrefs.GetFloat("musicVolume"));
         sfxaudioMixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
