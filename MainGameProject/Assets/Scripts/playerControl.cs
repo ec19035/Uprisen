@@ -50,6 +50,14 @@ public class playerControl : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter(Collider Other){
+        if (Other.tag == "Boss")
+        {
+            health = PlayerStats.instance.DecreasePlayerHealth(5.0f);
+            HealthBar.fillAmount = health / 100.0f;
+        }
+    }
+
     // First checks if the player is on the ground
     // takes in the input from the keyboard and moves the player accordingly
     void move(){
