@@ -29,8 +29,8 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update(){
         wait -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.J) && 0 > wait && PauseMenu.gamePaused == false && mana >= 10.0f){
-            wait = 2.0f; // delay between shots
+        if (Input.GetKeyDown(KeyCode.J) && 0 > wait && PauseMenu.gamePaused == false && mana >= 1.0f){
+            wait = 1.0f; // delay between shots
 
             Ray ray = new Ray(attackPoint.position, attackPoint.forward); // create scope
             RaycastHit hit;
@@ -47,7 +47,7 @@ public class Shoot : MonoBehaviour
             currentBullet.transform.forward = direction.normalized; 
             currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse); // FIRE!
 
-            mana = PlayerStats.instance.DecreasePlayerMana(10.0f);
+            mana = PlayerStats.instance.DecreasePlayerMana(1.0f);
             ManaBar.fillAmount = mana/100.0f;
             Destroy(currentBullet, 0.5f); // removed from scene after !f
         }
