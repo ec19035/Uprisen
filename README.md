@@ -1,5 +1,7 @@
 # Uprisen
 
+Path to Open Game => Uprisen/MainGameProject/Assets/Scenes/Menu
+
 Gameplay Commands => <br />
 WASD: Move Character <br />
 Move Mouse: Move Camera <br />
