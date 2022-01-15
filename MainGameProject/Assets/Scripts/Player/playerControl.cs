@@ -7,7 +7,7 @@ using UnityEngine.UI;
 // Use WASD to move player
 // use Mouse to turn screen in the x axis
 
-public class playerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     CharacterController body; // used to control player body
     private Vector3 movement; // used to store movement vectors
@@ -65,7 +65,7 @@ public class playerControl : MonoBehaviour
                 movement.z -= 10.0f;
             }
         }
-       
+        transform.Rotate(new Vector3(0.0f, Input.GetAxis("Mouse X"), 0.0f));
         movement.y -= gravity * Time.deltaTime; // constantly apply gravity to the player
         body.Move(movement * Time.deltaTime);
     }

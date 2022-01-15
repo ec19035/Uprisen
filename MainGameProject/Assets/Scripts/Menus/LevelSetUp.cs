@@ -18,11 +18,15 @@ public class LevelSetUp : MonoBehaviour
     void Start()
     {
         levelChoice = PlayerStats.instance.choice;
-        for (int i = 0; i < eyeSpawnPoint.Length; i++){
-            var enem = Instantiate(eyeEnemy, eyeSpawnPoint[i].transform.position, eyeSpawnPoint[i].transform.rotation);
+        if (levelChoice == "Medium" || levelChoice == "Hard"){
+            for (int i = 0; i < eyeSpawnPoint.Length; i++){
+                var enem = Instantiate(eyeEnemy, eyeSpawnPoint[i].transform.position, eyeSpawnPoint[i].transform.rotation);
+            }
         }
-        for (int i = 0; i < turretSpawnPoint.Length; i++){
-            var enemT = Instantiate(turretEnemy, turretSpawnPoint[i].transform.position, turretSpawnPoint[i].transform.rotation);
+        if (levelChoice == "Hard"){
+            for (int i = 0; i < turretSpawnPoint.Length; i++){
+                var enemT = Instantiate(turretEnemy, turretSpawnPoint[i].transform.position, turretSpawnPoint[i].transform.rotation);
+            }
         }
         int numOfBossesBeaten = EnemyStats.instance.bosses;
         for (int i = 0; i < bossSpawnPoint.Length; i++){

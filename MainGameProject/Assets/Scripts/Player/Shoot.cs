@@ -10,7 +10,6 @@ using UnityEngine.UI;
 // Used to shoot magic
 public class Shoot : MonoBehaviour
 {
-    public GameObject bullet;
     public float shootForce = 5.0f;
     public Transform attackPoint;
     public float wait;
@@ -19,6 +18,7 @@ public class Shoot : MonoBehaviour
     public int pos = 0;
     public float mana; // used to keep track of player health 
     public Image ManaBar;
+    public GameObject[] magicTypes;
 
     void Start(){
         mana = PlayerStats.instance.playerMana;
@@ -43,7 +43,7 @@ public class Shoot : MonoBehaviour
 
             Vector3 direction = targetPoint - attackPoint.position; // scope
 
-            GameObject currentBullet = Instantiate(bullet, attackPoint.position, Quaternion.identity); // creates new bullets
+            GameObject currentBullet = Instantiate(magicTypes[pos], attackPoint.position, Quaternion.identity); // creates new bullets
             currentBullet.transform.forward = direction.normalized; 
             currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse); // FIRE!
 
