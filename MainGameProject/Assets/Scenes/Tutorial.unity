@@ -1886,7 +1886,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b5bc1753009a5124ea2bdbddf85067a1, type: 2}
+  - {fileID: 2100000, guid: 8850fcfe364abff46882515f88e28029, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1982,7 +1982,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3316,7 +3316,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4006,7 +4006,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1169977, y: 1}
+    m_SensorSize: {x: 2.123982, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5066,7 +5066,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5832,7 +5832,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1169977, y: 1}
+    m_SensorSize: {x: 2.123982, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10108,7 +10108,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12677,7 +12677,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1169977, y: 1}
+    m_SensorSize: {x: 2.123982, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12930,7 +12930,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13426,6 +13426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHealth: 50
   playerMana: 10
+  playerStrength: 10
   healthPotions: 0
   strengthPotions: 0
   manaPotions: 0
@@ -15759,7 +15760,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1169977, y: 1}
+    m_SensorSize: {x: 2.123982, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -18002,7 +18003,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18098,7 +18099,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18310,6 +18311,7 @@ GameObject:
   - component: {fileID: 1613503809}
   - component: {fileID: 1613503808}
   - component: {fileID: 1613503807}
+  - component: {fileID: 1613503816}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -18393,6 +18395,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2d58942e2f0e2418b783df13126298, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastCheckPoint: {x: 0, y: 0, z: 0}
+  health: 0
+  HealthBar: {fileID: 2071357077}
 --- !u!114 &1613503811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18405,8 +18410,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd6794609a72e44c825097caee7cd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  HealthBar: {fileID: 2071357077}
+  audio: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: f4127c4e5fd864f0bba15f28ced50423, type: 3}
 --- !u!143 &1613503812
 CharacterController:
   m_ObjectHideFlags: 0
@@ -18459,7 +18464,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab8863ac33e39aa4b91c62c43f927c54, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18489,6 +18494,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613503805}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &1613503816
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613503805}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1615975714
 GameObject:
   m_ObjectHideFlags: 0
@@ -22228,7 +22329,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4442a18da41febe43abd9104795e5b72, type: 2}
+  - {fileID: 2100000, guid: 635ebdbadaa181846945d21e4449341c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
