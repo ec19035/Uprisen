@@ -19,7 +19,7 @@ Use the following WebGL Link in order to play the game on the web brower <br />
 WebGL Link:  https://ec19035.github.io/Uprisen/build3/index.html <br />
 
 Please leave a feedback on the following google form link: <br />
-https://docs.google.com/forms/d/e/1FAIpQLSdMpbGNakWHztKxyRH8t5XQQJ_x3JVAelFlg4Cw4AoeSYDA3A/viewform?usp=sf_link <br />
+https://docs.google.com/forms/d/e/1FAIpQLSeQgi4FaGiUnzx-xE4IlJMZ3eu3hJH8yRxVB8ZlEVgzMXG0Xw/viewform?usp=sf_link <br />
 
 To run the game on unity => <br />
 	Clone the repository using: 	git clone https://github.com/ec19035/Uprisen.git <br />
